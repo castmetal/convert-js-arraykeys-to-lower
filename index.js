@@ -33,7 +33,7 @@ const callBackKeys = (obj) => {
   let newobj;
   if (obj instanceof Array) {
   	newobj = [];
-		for (const item of obj) {
+    for (const item of obj) {
     	newobj.push(mappingKeysObj(item));
     }
   } else {
