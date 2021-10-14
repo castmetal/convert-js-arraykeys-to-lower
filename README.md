@@ -1,5 +1,5 @@
 # convert-js-arraykeys-to-lower
-Converts an Array or Object To Lower
+Converts an Array or Object Keys To Lower
 
 Use:
 
