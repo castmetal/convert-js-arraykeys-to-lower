@@ -1,10 +1,10 @@
 const mappingKeysObj = (obj) => {
-  let newobj = {};
+  let newObj = {};
 
   if (obj instanceof Array) {
-  	newobj = [];
-		for (const item of obj) {
-    	newobj.push(mappingKeysObj(item));
+  	newObj = [];
+    for (const item of obj) {
+    	newObj.push(mappingKeysObj(item));
     }
   } else {
     let key, keys = Object.keys(obj);
@@ -12,36 +12,36 @@ const mappingKeysObj = (obj) => {
     for (let i=0; i<n; i++) {
       key = keys[i];
       if (typeof obj[key] === 'object' && obj[key] !== null) {
-        newobj[key.toLowerCase()] = callBackKeys(obj[key]);
+        newObj[key.toLowerCase()] = callBackKeys(obj[key]);
       } else if (obj[key] instanceof Array) {
         let itens = [];
         for (const item of obj[key]) {
           itens.push(mappingKeysObj(item));
         }
 
-         newobj[key.toLowerCase()] = itens;
+         newObj[key.toLowerCase()] = itens;
       } else {
-        newobj[key.toLowerCase()] = obj[key];
+        newObj[key.toLowerCase()] = obj[key];
       }
     }
   }
 
-  return newobj;
+  return newObj;
 };
 
 const callBackKeys = (obj) => {
-  let newobj;
+  let newObj;
   if (obj instanceof Array) {
-  	newobj = [];
+  	newObj = [];
     for (const item of obj) {
-    	newobj.push(mappingKeysObj(item));
+    	newObj.push(mappingKeysObj(item));
     }
   } else {
-  	newobj = {};
-  	newobj = mappingKeysObj(obj);
+  	newObj = {};
+  	newObj = mappingKeysObj(obj);
   }
   
-  return newobj;
+  return newObj;
 };
 
 export const convertAllKeysToLower = (obj) => {
