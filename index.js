@@ -2,7 +2,7 @@ const getArrayKeysToLowerCase = (obj) => {
   let arr = [];
   for (const item of obj) {
     if (typeof item === 'object' && item !== null) {
-  	  arr.push(setAllLowerCaseKeys(item));
+  	  arr.push(setAllKeysToLowerCase(item));
     } else {
   	  arr.push(item);
     }
