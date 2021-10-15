@@ -1,20 +1,20 @@
-const getItemsFromArray = (obj) => {
-  let arrComp = [];
+const getArrayToLowerCase = (obj) => {
+  let arr = [];
   for (const item of obj) {
     if (typeof item === 'object' && item !== null) {
-  	  arrComp.push(mappingKeysObj(item));
+  	  arr.push(setAllLowerCaseKeys(item));
     } else {
-  	  arrComp.push(item);
+  	  arr.push(item);
     }
   }
-  return arrComp;
+  return arr;
 };
 
-const mappingKeysObj = (obj) => {
+const setAllLowerCaseKeys = (obj) => {
   let newObj = {};
 
   if (obj instanceof Array) {
-    newObj = getItemsFromArray(obj);
+    newObj = getArrayToLowerCase(obj);
   } else {
     let key, keys = Object.keys(obj);
     let n = keys.length;
@@ -22,9 +22,9 @@ const mappingKeysObj = (obj) => {
     for (let i=0; i<n; i++) {
       key = keys[i];
       if (typeof obj[key] === 'object' && obj[key] !== null) {
-        newObj[key.toLowerCase()] = mappingKeysObj(obj[key]);
+        newObj[key.toLowerCase()] = setAllLowerCaseKeys(obj[key]);
       } else if (obj[key] instanceof Array) {
-        const itens = getItemsFromArray(obj[key]);
+        const itens = getArrayToLowerCase(obj[key]);
         newObj[key.toLowerCase()] = itens;
       } else {
         newObj[key.toLowerCase()] = obj[key];
@@ -36,7 +36,7 @@ const mappingKeysObj = (obj) => {
 };
 
 export const convertAllKeysToLower = (obj) => {
-  const newObj = mappingKeysObj(obj);
+  const newObj = setAllLowerCaseKeys(obj);
 
   return newObj;
 };
