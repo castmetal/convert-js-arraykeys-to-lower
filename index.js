@@ -3,7 +3,7 @@ const getArrayKeysToLowerCase = (obj) => {
 
   for (const item of obj) {
     if (typeof item === 'object' && item !== null) {
-  	  arr.push(setObjectKeysToLowerCase(item, {}));
+  	  arr.push(setObjectKeysToLowerCase(item));
     } else {
   	  arr.push(item);
     }
@@ -12,7 +12,8 @@ const getArrayKeysToLowerCase = (obj) => {
   return arr;
 };
 
-const setObjectKeysToLowerCase = (obj, newObj) => {
+const setObjectKeysToLowerCase = (obj) => {
+  let newObj = {};
   let key, keys = Object.keys(obj);
   let n = keys.length;
 
@@ -37,7 +38,7 @@ const setAllKeysToLowerCase = (obj) => {
   if (obj instanceof Array) {
     newObj = getArrayKeysToLowerCase(obj);
   } else {
-    newObj = setObjectKeysToLowerCase(obj, {});
+    newObj = setObjectKeysToLowerCase(obj);
   }
 
   return newObj;
